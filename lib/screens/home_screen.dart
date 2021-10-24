@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:rickmorty_app/screens/origins_screen.dart';
-
+import 'package:rickmorty_app/models/results.dart';
+import 'package:rickmorty_app/screens/home_card_screen.dart';
+import 'package:rickmorty_app/widgets/home_button.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({ Key? key }) : super(key: key);
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -14,58 +13,31 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Rick y Morty'),
-      ),
-      body: _getBody(),
-      drawer: _getCharacters(),
-      
-    );
-  }
-
-  Widget _getBody() {
-      return Scaffold(
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget> [
-              Image(
-                image: AssetImage('assets/rick_morty.png'),
-                  width: 200,
-              ),
-            ],
+        title: Text(
+          "Rick y Morty App"
+          ), 
+          actions: [
+        HomeButton(
+          icon: Icon(
+            Icons.notifications
+            ),
+        ),
+        HomeButton(
+          icon: Icon(
+            Icons.exit_to_app
+            ),
+        )
+      ]),
+      body: Container(
+        child: Padding(
+          padding: EdgeInsets.all(15),
+        child: HomeCardScreen(
+          results: Results
+          (name: 'Rick Sanchez',  
+          image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg') ,
         ),
       ),
+      ),
     );
   }
-
-  Widget _getCharacters() {
-
-        return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Image(
-              image: AssetImage('assets/rick_morty.png'),
-            )
-          ),
-          ListTile(
-            leading: Icon(Icons.trip_origin),
-            title: const Text('Origenes'),
-            onTap: () { 
-              Navigator.push(
-                context, 
-                MaterialPageRoute(
-                  builder: (context) => OriginScreen()
-                )
-              );
-            },
-          ),
-        ],
-      )
-        );
-}
-
-
-
 }
