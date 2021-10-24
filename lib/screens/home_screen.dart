@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rickmorty_app/screens/origins_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -21,13 +22,50 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  _getBody() {
-    return Image(
-    image: AssetImage('assets/rick_morty.png'),
-    width: 200,
+  Widget _getBody() {
+      return Scaffold(
+      body: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget> [
+              Image(
+                image: AssetImage('assets/rick_morty.png'),
+                  width: 200,
+              ),
+            ],
+        ),
+      ),
     );
-    
   }
 
-  _getCharacters() {}
+  Widget _getCharacters() {
+
+        return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Image(
+              image: AssetImage('assets/rick_morty.png'),
+            )
+          ),
+          ListTile(
+            leading: Icon(Icons.trip_origin),
+            title: const Text('Origenes'),
+            onTap: () { 
+              Navigator.push(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => OriginScreen()
+                )
+              );
+            },
+          ),
+        ],
+      )
+        );
+}
+
+
+
 }
