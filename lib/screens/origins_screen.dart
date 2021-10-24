@@ -28,11 +28,11 @@ _getOrigin();
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Origin'), 
+        title: Text('Originen'), 
       
       ),
       body: Center(
-        child: Text('Origin'),
+        child: Text('Originen'),
       ),
     );
   }
